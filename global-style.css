@@ -4,3 +4,47 @@ html {
 body {
 	margin: 0;
 }
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.container--header {
+	padding-top: 90px;
+	height: 210px;
+}
+.container--search {
+	margin-top: -25px;
+}
+
+.hover {
+	transition-duration: 0.5s;
+}
+.hover--opacity-08:hover {
+	opacity: 0.8;
+}
+
+.header {
+	background: #AFFF50;
+}
+
+.logo {
+	display: inline-block;
+	height: auto;
+}
+.logo--big img {
+	height: calc(135px * 1.04);
+	margin-bottom: calc(-135px * 0.04);
+}
+
+.search-bar {
+	font-family: 'Finlandica', sans-serif;
+	height: 50px;
+	width: calc(100% - 20px);
+	font-size: 20px;
+	box-shadow: 0 5px 8px -2px rgba(0,0,0,0.15);
+	border-radius: 5px;
+	border-width: 0;
+	padding: 0 10px;
+	background: #FFFFFF;
+}
