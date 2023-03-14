@@ -11,6 +11,9 @@
 	overflow: hidden;
 }
 .banner--half {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 	height: 250px;
 	flex: 1;
 }
@@ -19,9 +22,11 @@
 }
 
 .banner--trees {
+	background-image: url("images/bg_trees.png");
 	color: #576249;
 }
 .banner--plants {
+	background-image: url("images/bg_plants.png");
 	color: #819D60;
 }
 
@@ -29,4 +34,11 @@
 	text-align: center;
 	line-height: 50px;
 	margin: 100px 0;
+}
+.banner__bg {
+	position: absolute;
+	height: 250px;
+	left: 0;
+	top: 0;
+	
 }
