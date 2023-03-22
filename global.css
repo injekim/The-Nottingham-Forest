@@ -95,6 +95,7 @@ p {
 	border-width: 0;
 	box-shadow: 0 5px 8px -2px rgba(0,0,0,0.15);
 	background: white;
+	-webkit-appearance: none;
 }
 .search-bar::placeholder {
 	color: var(--grey-light);
