@@ -1,0 +1,13 @@
+@import url("var.css");
+
+.container--navigation {
+	border-bottom: 1px solid var(--border-light);
+	background: var(--background-light);
+	margin: -20px -20px -100px;
+	padding: 25px 20px 0;
+}
+.nav-text {
+	line-height: 50px;
+	font-size: 17px;
+	margin: 0;
+}
