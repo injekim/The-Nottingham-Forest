@@ -40,6 +40,7 @@
 							JOIN categories ON products.product_id = categories.category_id
 							WHERE products.product_id = $pid;
 						");
+						
 						$product = mysqli_fetch_array($re1);
 						echo "<p class='nav-text'>Home > $product[1] > $product[2]</p>";
 					?>
@@ -56,16 +57,27 @@
 			</div>
 			<div class="container container--main">
 				<div class="container container--product">
-					<div class="product-photo" style="background-image: url('./images/plant_test.png');"></div>
-					<div class="product-info">
-						<h1 class="product-info__title">Something Something Tree Something</h1>
-						<h3 class="product-info__price">￡ 40</h3>
-						<p class="product-info__p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc magna diam, tristique non nunc non, accumsan blandit lacus. Praesent nec gravida ex, ut consectetur purus. Phasellus commodo ligula sed tortor malesuada, eu iaculis erat vehicula. Ut vitae ipsum in justo sodales vehicula eget quis dolor. Nam eget vulputate nibh, vel dictum tellus. Mauris eget ante lobortis augue consectetur tincidunt ac at leo.</p>
-						<div class="product-info__button-area">
-							<button class="button button--buy hover hover--opacity-08" type="button">Buy Now</button>
-							<button class="button button--cart hover hover--opacity-08" type="button">🛒</button>
-						</div>
-					</div>
+					<?php 
+						$re2 = mysqli_query($con, "SELECT * FROM products WHERE products.product_id = $pid;");
+						$product = mysqli_fetch_array($re2);
+						$product_name = $product['product_name'];
+						$price = $product['price'];
+						$image_url = $product['image_url'];
+						$description = $product['description'];
+						
+						echo <<< EOT
+							<div class="product-photo" style="background-image: url('$image_url');"></div>
+							<div class="product-info">
+								<h1 class="product-info__title">$product_name</h1>
+								<h3 class="product-info__price">￡ $price</h3>
+								<p class="product-info__p">$description</p>
+								<div class="product-info__button-area">
+									<button class="button button--buy hover hover--opacity-08" type="button">Buy Now</button>
+									<button class="button button--cart hover hover--opacity-08" type="button">🛒</button>
+								</div>
+							</div>
+						EOT;
+					?>
 				</div>
 				<h2 class="title--content">Related Items</h2>
 				<div class="content-block gridview">
