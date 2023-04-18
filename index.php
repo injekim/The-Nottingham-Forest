@@ -41,12 +41,12 @@
 					$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 				?>
 				<div class="content-block banner-area">
-					<div class="banner banner--half banner--trees hover hover--opacity-08">
+					<a href="./search.php?category=Trees&Shrubs" class="banner banner--half banner--trees hover hover--opacity-08">
 						<h1 class="banner__title">TREES</h1>
-					</div>
-					<div class="banner banner--half banner--plants hover hover--opacity-08">
+					</a>
+					<a href="./search.php?category=Herbs&Flowers&Ivy&Cactus" class="banner banner--half banner--plants hover hover--opacity-08">
 						<h1 class="banner__title">PLANTS</h1>
-					</div>
+					</a>
 				</div>
 				<h2 class="title--content">Best Sellers</h2>
 				<div class="content-block gridview">
