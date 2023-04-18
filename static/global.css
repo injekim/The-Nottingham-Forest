@@ -26,6 +26,10 @@ h3 {
 p {
 	font-size: 15px;
 }
+a {
+	color: var(--grey-dark);
+	text-decoration: none;
+}
 
 /* Global styles */
 .container {

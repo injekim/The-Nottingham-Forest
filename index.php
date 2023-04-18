@@ -22,8 +22,8 @@
 		<div class="min-100vh">
 			<header class="header header--big">
 				<div class="container container--header">
-					<a href="/" class="logo logo--big hover hover--opacity-08">
-						<img src="images/logo.svg" class="logo__img logo--big__img" alt="Logo">
+					<a href="./index.php" class="logo logo--big hover hover--opacity-08">
+						<img src="static/images/logo.svg" class="logo__img logo--big__img" alt="Logo">
 					</a>
 				</div>
 			</header>
@@ -51,19 +51,22 @@
 				<h2 class="title--content">Best Sellers</h2>
 				<div class="content-block gridview">
 					<?php 
-						$re1 = mysqli_query($con,"SELECT * FROM products LIMIT 0, 5;");
+						$re1 = mysqli_query($con, "SELECT * FROM products LIMIT 0, 5;");
 						while($product = mysqli_fetch_array($re1)) {
+							$product_id = $product['product_id'];
 							$product_name = $product['product_name'];
 							$price = $product['price'];
 							$image_url = $product['image_url'];
 							
 							echo <<< EOT
 								<div class="grid-child hover hover--opacity-08">
-									<div class="grid-child__img" style="background-image: url('$image_url');"></div>
-									<div class="grid-child__info">
-										<h3 class="grid-child__title">$product_name</h3>
-										<p class="grid-child__price">￡ $price</p>
-									</div>
+									<a class="link" href="./product.php?pid=$product_id">
+										<div class="grid-child__img" style="background-image: url('$image_url');"></div>
+										<div class="grid-child__info">
+											<h3 class="grid-child__title">$product_name</h3>
+											<p class="grid-child__price">￡ $price</p>
+										</div>
+									</a>
 								</div>
 							EOT;
 						}
@@ -77,8 +80,8 @@
 		</div>
 		<footer class="footer">
 			<div class="container container--footer">
-				<a href="/" class="logo logo--footer hover hover--opacity-08">
-					<img src="images/logo_grey.svg" class="logo__img logo--footer__img" alt="Logo">
+				<a href="./index.php" class="logo logo--footer hover hover--opacity-08">
+					<img src="static/images/logo_grey.svg" class="logo__img logo--footer__img" alt="Logo">
 				</a>
 			</div>
 		</footer>
