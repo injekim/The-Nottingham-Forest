@@ -37,7 +37,7 @@
 						$re1 = mysqli_query($con, "
 							SELECT products.product_id, categories.category_name, products.product_name
 							FROM products
-							JOIN categories ON products.product_id = categories.category_id
+							JOIN categories ON products.category_id = categories.category_id
 							WHERE products.product_id = $pid;
 						");
 						
@@ -47,9 +47,10 @@
 				</div>
 			</div>
 			<div class="container container--search">
-				<form>
+				<form action="./search.php" method="get">
 					<input
 						type="text"
+						name="search"
 						class="search-bar"
 						placeholder="🍃 DON’T LEAF WITHOUT WHAT YOU’RE LOOKING FOR!"
 					>

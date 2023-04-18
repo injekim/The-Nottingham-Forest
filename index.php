@@ -28,9 +28,10 @@
 				</div>
 			</header>
 			<div class="container container--search">
-				<form>
+				<form action="./search.php" method="get">
 					<input
 						type="text"
+						name="search"
 						class="search-bar"
 						placeholder="🍃 DON’T LEAF WITHOUT WHAT YOU’RE LOOKING FOR!"
 					>

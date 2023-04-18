@@ -28,12 +28,19 @@
 				</div>
 			</header>
 			<div class="container container--search">
-				<form>
-					<input
-						type="text"
-						class="search-bar"
-						placeholder="🍃 DON’T LEAF WITHOUT WHAT YOU’RE LOOKING FOR!"
-					>
+				<form action="./search.php" method="get">
+					<?php
+						$search = $_GET['search'];
+						echo <<< EOT
+							<input
+								type="text"
+								name="search"
+								class="search-bar"
+								value="$search"
+								placeholder="🍃 DON’T LEAF WITHOUT WHAT YOU’RE LOOKING FOR!"
+							>
+						EOT;
+					?>
 				</form>
 			</div>
 			<div class="container container--main">
