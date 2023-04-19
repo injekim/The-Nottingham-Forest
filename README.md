@@ -5,6 +5,7 @@
 ![schema](./README/schema.png)
 
 ### Search query
+> The search bar and side bar traits are used to retrieve a list of products that match the keywords and selected traits.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url, GROUP_CONCAT(product_traits.trait_id, ':', product_trait_values.value SEPARATOR ', ') AS traits
 FROM products
@@ -12,7 +13,7 @@ JOIN product_trait_values ON products.product_id = product_trait_values.product_
 JOIN product_traits ON product_trait_values.trait_id = product_traits.trait_id
 JOIN categories ON products.category_id = categories.category_id
 
-# Keyword search from search-bar
+# Keyword search from the search bar
 WHERE (
 	products.product_name LIKE '%search_keyword%'
 	OR products.description LIKE '%search_keyword%'
@@ -21,13 +22,14 @@ WHERE (
 )
 GROUP BY products.product_id
 
-# Trait selections from side-bar
+# Trait selections from the side bar
 HAVING 
 	(traits LIKE "%trait1:value1%")
 	AND (traits LIKE "%trait2:value1%" OR traits LIKE "%trait2:value2%") ...
 ```
 
 ### Related products query
+> Retrieves a list of 5 products that have the most matching traits.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url
 FROM products
@@ -41,6 +43,7 @@ LIMIT 5;
 ```
 
 ### Best sellers query
+> Retrieves a list of 5 products with highest sale numbers.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url, SUM(order_items.quantity) as total_sales
 FROM order_items
