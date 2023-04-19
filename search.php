@@ -20,6 +20,12 @@
 	</head>
 	<body>
 		<div class="min-100vh">
+			<?php
+				$admin = $_GET['admin'];
+				if($admin == 'True') {
+					echo "<div class='admin-sign'>Admin</div>";
+				}
+			?>
 			<header class="header header--big">
 				<div class="container container--header">
 					<a href="./index.php" class="logo logo--big hover hover--opacity-08">
@@ -112,6 +118,51 @@
 								}
 							?>
 						</div>
+						<?php
+							$traits = mysqli_query($con, "SELECT * FROM product_traits;");
+							while($trait = mysqli_fetch_array($traits)) {
+								$trait_id = $trait['trait_id'];
+								$trait_name = $trait['trait_name'];
+								
+								$trait_values = $_GET[$trait_id];
+								$trait_query = '';
+								
+								$query = "SELECT product_trait_values.value, COUNT(product_trait_values.value)
+									FROM product_trait_values
+									WHERE product_trait_values.trait_id = $trait_id
+									GROUP BY product_trait_values.value;";
+								$values = mysqli_query($con, $query);
+								echo <<< TRAIT
+									<h3 class="title--sidebar">$trait_name</h3>
+									<div class="sidebar-box">
+								TRAIT;
+								while($trait = mysqli_fetch_array($values)) {
+									$value = $trait['value'];
+									$name = $trait_id . '[]';
+									$checked = '';
+									if(!is_null($trait_values)) {
+										if(in_array($value, $trait_values)) {
+											$checked = 'checked';
+											$trait_query = $trait_query . 'OR product_trait_values.value = "' . $value . '" ';
+											echo $trait_query;
+										}
+									}
+
+									echo <<< VALUE
+										<label class="sidebar__label">
+											<input class="checkbox" type="checkbox" name="$name" value="$value" $checked>
+											<span class="checkbox--bg"></span>
+											$value
+										</label>
+									VALUE;
+									if(strlen($trait_query) > 0) {
+										$sidebar_query = $sidebar_query . 'AND (' . substr($trait_query, 2) . ')';
+										// echo $sidebar_query;
+									}
+								}
+								echo "</div>";
+							}
+						?>
 						<button class="button button--submit hover hover--opacity-08" type="submit">Submit</button>
 					</form>
 				</div>
@@ -129,7 +180,7 @@
 							OR product_trait_values.value LIKE '%$search%'
 						)";
 						$group_by = "GROUP BY products.product_id;";
-						echo $search_query . $sidebar_query . $group_by;
+						// echo $search_query . $sidebar_query . $group_by;
 						$results = mysqli_query($con, $search_query . $sidebar_query . $group_by);
 					?>
 					<h2 class="title--content">Search Results</h2>

@@ -20,7 +20,12 @@
 	</head>
 	<body>
 		<div class="min-100vh">
-			<?php 
+			<?php
+				$admin = $_GET['admin'];
+				if($admin == 'True') {
+					echo "<div class='admin-sign'>Admin</div>";
+				}
+
 				$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 				$pid = $_GET['pid'];
 			?>
