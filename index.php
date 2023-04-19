@@ -10,8 +10,8 @@
 		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 		
 		<!-- Stylesheets -->
-		<link href="static/global.css" rel="stylesheet">
-		<link href="static/landing.css" rel="stylesheet">
+		<link href="images/global.css" rel="stylesheet">
+		<link href="images/landing.css" rel="stylesheet">
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
 			<header class="header header--big">
 				<div class="container container--header">
 					<a href="./index.php" class="logo logo--big hover hover--opacity-08">
-						<img src="static/images/logo.svg" class="logo__img logo--big__img" alt="Logo">
+						<img src="images/logo.svg" class="logo__img logo--big__img" alt="Logo">
 					</a>
 				</div>
 			</header>
@@ -95,7 +95,7 @@
 		<footer class="footer">
 			<div class="container container--footer">
 				<a href="./index.php" class="logo logo--footer hover hover--opacity-08">
-					<img src="static/images/logo_grey.svg" class="logo__img logo--footer__img" alt="Logo">
+					<img src="images/logo_grey.svg" class="logo__img logo--footer__img" alt="Logo">
 				</a>
 			</div>
 		</footer>

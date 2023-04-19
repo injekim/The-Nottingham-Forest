@@ -1,0 +1,99 @@
+@import url("var.css");
+
+/* Sidebar */
+.title--sidebar {
+	text-transform: uppercase;
+	line-height: 35px;
+	margin: 15px 0 0 0;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.title--sidebar:first-of-type {
+	margin-top: -35px;
+}
+
+.sidebar-box {
+	border: 1px solid var(--border-light);
+	background: #FFFFFF;
+	border-radius: 5px;
+	min-height: 20px;
+	padding: 10px;
+}
+.sidebar__label {
+	margin-bottom: 5px;
+	display: block;
+	line-height: 17px;
+	font-size: 17px;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.sidebar__label:last-of-type {
+	margin-bottom: 0;
+}
+
+/* Price Box */
+.sidebar-box--price {
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	display: flex;
+}
+.price-box {
+	font-family: 'Finlandica', sans-serif;
+	font-weight: 400;
+	font-size: 17px;
+	border: 1px solid var(--border-light);
+	border-radius: 5px;
+	background: var(--background-light);
+	height: 28px;
+	width: 58px;
+	margin: 0;
+	display: inline-block;
+	text-align: center;
+}
+.price-box__p {
+	color: var(--grey-dark);
+	display: inline-block;
+	line-height: 30px;
+	margin: 0;
+}
+
+/* Checkbox */
+.checkbox {
+	appearance: none;
+	border: 1px solid var(--border-light);
+	border-radius: 5px;
+	background-color: #fff;
+	height: 15px;
+	width: 15px;
+	margin: 0;
+	transform: translateY(0.13em);
+}
+.checkbox:checked {
+	background-color: var(--green-light);
+}
+
+/* Button */
+.button {
+	margin-top: 20px;
+	box-shadow: 0 5px 8px -2px rgba(0, 0, 0, 0.15);
+	border: 1px solid var(--border-light);
+	background-color: white;
+	border-radius: 5px;
+	font-family: 'Finlandica', sans-serif;
+	line-height: 25px;
+	font-weight: 600;
+	font-size: 20px;
+	text-transform: uppercase;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+.button--submit {
+	background: var(--green-light);
+	color: var(--green-dark);
+	width: calc(100% - 2px);
+	margin-top: 20px;
+}

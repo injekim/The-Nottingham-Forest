@@ -1,0 +1,46 @@
+@import url("var.css");
+
+/* Banner */
+.banner-area {
+	margin-bottom: 50px;
+	margin-top: -30px;
+	display: flex;
+}
+.banner {
+	border: 1px solid var(--border-light);
+	border-radius: 5px;
+	background: var(--background-light);
+	overflow: hidden;
+}
+.banner--half {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 250px;
+	flex: 1;
+}
+.banner--half:first-child {
+	margin-right: 20px;
+}
+
+.banner--trees {
+	background-image: url("bg_trees.png");
+	color: #576249;
+}
+.banner--plants {
+	background-image: url("bg_plants.png");
+	color: #819D60;
+}
+
+.banner__title {
+	text-align: center;
+	line-height: 50px;
+	margin: 100px 0;
+}
+.banner__bg {
+	position: absolute;
+	height: 250px;
+	left: 0;
+	top: 0;
+	
+}
