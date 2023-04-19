@@ -84,41 +84,37 @@
 				</div>
 				<h2 class="title--content">Related Items</h2>
 				<div class="content-block gridview">
-					<div class="grid-child hover hover--opacity-08">
-						<div class="grid-child__img" style="background-image: url('./images/plant_test.png');"></div>
-						<div class="grid-child__info">
-							<h3 class="grid-child__title">AAAAAAggggg</h3>
-							<p class="grid-child__price">￡ 40</p>
-						</div>
-					</div>
-					<div class="grid-child hover hover--opacity-08">
-						<div class="grid-child__img"></div>
-						<div class="grid-child__info">
-							<h3 class="grid-child__title">Test</h3>
-							<p class="grid-child__price">￡ 40</p>
-						</div>
-					</div>
-					<div class="grid-child hover hover--opacity-08">
-						<div class="grid-child__img"></div>
-						<div class="grid-child__info">
-							<h3 class="grid-child__title">Test</h3>
-							<p class="grid-child__price">￡ 40</p>
-						</div>
-					</div>
-					<div class="grid-child hover hover--opacity-08">
-						<div class="grid-child__img"></div>
-						<div class="grid-child__info">
-							<h3 class="grid-child__title">Treeeee</h3>
-							<p class="grid-child__price">￡ 40</p>
-						</div>
-					</div>
-					<div class="grid-child hover hover--opacity-08">
-						<div class="grid-child__img"></div>
-						<div class="grid-child__info">
-							<h3 class="grid-child__title">How long can this goooooooooooo</h3>
-							<p class="grid-child__price">￡ 40</p>
-						</div>
-					</div>
+					<?php
+						$query = "SELECT products.product_id, products.product_name, products.price, products.image_url
+						FROM products
+						INNER JOIN product_trait_values ptv ON products.product_id = ptv.product_id
+						INNER JOIN product_trait_values ptv2 ON ptv.trait_id = ptv2.trait_id AND ptv.value = ptv2.value
+						WHERE products.product_id <> $pid
+						AND ptv2.product_id = $pid
+						GROUP BY products.product_id
+						ORDER BY COUNT(*) DESC
+						LIMIT 5;";
+						$results = mysqli_query($con, $query);
+						
+						while($product = mysqli_fetch_array($results)) {
+							$product_id = $product['product_id'];
+							$product_name = $product['product_name'];
+							$price = $product['price'];
+							$image_url = $product['image_url'];
+							
+							echo <<< PRODUCT
+								<div class="grid-child hover hover--opacity-08">
+									<a class="link" href="./product.php?pid=$product_id">
+										<div class="grid-child__img" style="background-image: url('$image_url');"></div>
+										<div class="grid-child__info">
+											<h3 class="grid-child__title">$product_name</h3>
+											<p class="grid-child__price">￡ $price</p>
+										</div>
+									</a>
+								</div>
+							PRODUCT;
+						}
+					?>
 					<!-- Dummies to help with formatting -->
 					<div class="grid-child grid-child--dummy-fw"></div>
 					<div class="grid-child grid-child--dummy-fw"></div>
