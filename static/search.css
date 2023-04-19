@@ -5,6 +5,10 @@
 	text-transform: uppercase;
 	line-height: 35px;
 	margin: 15px 0 0 0;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .title--sidebar:first-of-type {
 	margin-top: -35px;
@@ -14,7 +18,7 @@
 	border: 1px solid var(--border-light);
 	background: #FFFFFF;
 	border-radius: 5px;
-	min-height: 30px;
+	min-height: 20px;
 	padding: 10px;
 }
 .sidebar__label {
@@ -22,6 +26,10 @@
 	display: block;
 	line-height: 17px;
 	font-size: 17px;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .sidebar__label:last-of-type {
 	margin-bottom: 0;
