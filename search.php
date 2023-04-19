@@ -49,12 +49,38 @@
 					<form action="./search.php" method="get">
 						<?php
 							$sidebar_query = '';
+							echo <<< EOT
+								<input
+									type="text"
+									name="search"
+									style="display: none;"
+									value="$search"
+								>
+							EOT;
 						?>
 						<h3 class="title--sidebar">Price</h3>
 						<div class="sidebar-box sidebar-box--price">
-							<input class="price-box" type="text" placeholder="Min">
-							<p class="price-box__p">~</p>
-							<input class="price-box" type="text" placeholder="Max">
+							<?php
+								$min = $_GET['min'];
+								$max = $_GET['max'];
+								$price_query = '';
+								
+								if(strlen($min) > 0) {
+									$price_query = $price_query . 'AND products.price >= ' . $min . ' ';
+								}
+								if(strlen($max) > 0) {
+									$price_query = $price_query . 'AND products.price <= ' . $max . ' ';
+								}
+								if(strlen($min) + strlen($max) > 0) {
+									$sidebar_query = $sidebar_query . 'AND (' . substr($price_query, 3) . ')';
+								}
+								
+								echo <<< PRICE
+									<input class="price-box" type="text" name="min" placeholder="Min" value="$min">
+									<p class="price-box__p">~</p>
+									<input class="price-box" type="text" name="max" placeholder="Max" value="$max">
+								PRICE;
+							?>
 						</div>
 						<h3 class="title--sidebar">Category</h3>
 						<div class="sidebar-box">
@@ -73,13 +99,13 @@
 											echo $cat_query;
 										}
 									}
-									echo <<< EOT
+									echo <<< CAT
 										<label class="sidebar__label">
 											<input class="checkbox" type="checkbox" name="category[]" value="$category_id" $checked>
 											<span class="checkbox--bg"></span>
 											$category_name
 										</label>
-									EOT;
+									CAT;
 								}
 								if(strlen($cat_query) > 0) {
 									$sidebar_query = $sidebar_query . 'AND (' . substr($cat_query, 2) . ')';
@@ -115,7 +141,7 @@
 								$price = $product['price'];
 								$image_url = $product['image_url'];
 								
-								echo <<< EOT
+								echo <<< PRODUCT
 									<div class="grid-child hover hover--opacity-08">
 										<a class="link" href="./product.php?pid=$product_id">
 											<div class="grid-child__img" style="background-image: url('$image_url');"></div>
@@ -125,7 +151,7 @@
 											</div>
 										</a>
 									</div>
-								EOT;
+								PRODUCT;
 							}
 						?>
 						<!-- Dummies to help with formatting -->

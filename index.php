@@ -66,7 +66,7 @@
 							$price = $product['price'];
 							$image_url = $product['image_url'];
 							
-							echo <<< EOT
+							echo <<< PRODUCT
 								<div class="grid-child hover hover--opacity-08">
 									<a class="link" href="./product.php?pid=$product_id">
 										<div class="grid-child__img" style="background-image: url('$image_url');"></div>
@@ -76,7 +76,7 @@
 										</div>
 									</a>
 								</div>
-							EOT;
+							PRODUCT;
 						}
 					?>
 					<!-- Dummies to help with formatting -->
