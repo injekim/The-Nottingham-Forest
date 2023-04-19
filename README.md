@@ -1,5 +1,11 @@
 # The Nottingham Forest
 > A mock e-commerce website for BUSI4493 22-23
+
+This is a mock website for a fictitious company that specialises in delivering trees and plants to its customers.
+It’s called ‘The Nottingham Forest’ because what else would it be called?
+
+## Interface Design
+
 ## Database
 ### Database schema
 ![schema](./README/schema.png)
