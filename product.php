@@ -73,8 +73,10 @@
 								<h3 class="product-info__price">￡ $price</h3>
 								<p class="product-info__p">$description</p>
 								<div class="product-info__button-area">
-									<button class="button button--buy hover hover--opacity-08" type="button">Buy Now</button>
-									<button class="button button--cart hover hover--opacity-08" type="button">🛒</button>
+									<form>
+										<button class="button button--buy hover hover--opacity-08" type="button">Buy Now</button>
+										<button class="button button--cart hover hover--opacity-08" type="button">🛒</button>
+									</form>
 								</div>
 							</div>
 						EOT;

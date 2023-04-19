@@ -42,10 +42,10 @@
 					$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 				?>
 				<div class="content-block banner-area">
-					<a href="./search.php?category=Trees+Shrubs" class="banner banner--half banner--trees hover hover--opacity-08">
+					<a href="./search.php?category%5B%5D=1&category%5B%5D=5" class="banner banner--half banner--trees hover hover--opacity-08">
 						<h1 class="banner__title">TREES</h1>
 					</a>
-					<a href="./search.php?category=Herbs&Flowers+Ivy+Cactus" class="banner banner--half banner--plants hover hover--opacity-08">
+					<a href="./search.php?category%5B%5D=2&category%5B%5D=3&category%5B%5D=4&category%5B%5D=6" class="banner banner--half banner--plants hover hover--opacity-08">
 						<h1 class="banner__title">PLANTS</h1>
 					</a>
 				</div>
@@ -59,6 +59,7 @@
 						ORDER BY total_sales DESC
 						LIMIT 5;";
 						$results = mysqli_query($con, $query);
+						
 						while($product = mysqli_fetch_array($results)) {
 							$product_id = $product['product_id'];
 							$product_name = $product['product_name'];

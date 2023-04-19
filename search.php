@@ -32,7 +32,6 @@
 					<?php
 						$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 						$search = $_GET['search'];
-						$category = $_GET['search'];
 						echo <<< EOT
 							<input
 								type="text"
@@ -47,7 +46,10 @@
 			</div>
 			<div class="container container--main">
 				<div class="container container--sidebar">
-					<form>
+					<form action="./search.php" method="get">
+						<?php
+							$sidebar_query = '';
+						?>
 						<h3 class="title--sidebar">Price</h3>
 						<div class="sidebar-box sidebar-box--price">
 							<input class="price-box" type="text" placeholder="Min">
@@ -56,17 +58,35 @@
 						</div>
 						<h3 class="title--sidebar">Category</h3>
 						<div class="sidebar-box">
-							<label class="sidebar__label">
-								<input class="checkbox" type="checkbox" id="type_tree" name="type_tree" value="True">
-								<span class="checkbox--bg"></span>
-								Tree
-							</label>
-							<label class="sidebar__label">
-								<input class="checkbox" type="checkbox" id="type_plant" name="type_plant" value="True">
-								<span class="checkbox--bg"></span>
-								Plant
-							</label>
+							<?php
+								$category = $_GET['category'];
+								$cat_query = '';
+								$categories = mysqli_query($con, "SELECT * FROM categories;");
+								while($cat = mysqli_fetch_array($categories)) {
+									$category_id = $cat['category_id'];
+									$category_name = $cat['category_name'];
+									$checked = '';
+									if(!is_null($category)) {
+										if(in_array($category_id, $category)) {
+											$checked = 'checked';
+											$cat_query = $cat_query . 'OR categories.category_id = ' . $category_id . ' ';
+											echo $cat_query;
+										}
+									}
+									echo <<< EOT
+										<label class="sidebar__label">
+											<input class="checkbox" type="checkbox" name="category[]" value="$category_id" $checked>
+											<span class="checkbox--bg"></span>
+											$category_name
+										</label>
+									EOT;
+								}
+								if(strlen($cat_query) > 0) {
+									$sidebar_query = $sidebar_query . 'AND (' . substr($cat_query, 2) . ')';
+								}
+							?>
 						</div>
+						<button class="button button--submit hover hover--opacity-08" type="submit">Submit</button>
 					</form>
 				</div>
 				<div class="container container--results">
@@ -83,7 +103,8 @@
 							OR product_trait_values.value LIKE '%$search%'
 						)";
 						$group_by = "GROUP BY products.product_id;";
-						$results = mysqli_query($con, $search_query . $group_by);
+						echo $search_query . $sidebar_query . $group_by;
+						$results = mysqli_query($con, $search_query . $sidebar_query . $group_by);
 					?>
 					<h2 class="title--content">Search Results</h2>
 					<div class="content-block gridview">

@@ -76,6 +76,7 @@
 	font-size: 20px;
 	text-transform: uppercase;
 	padding: 10px 20px;
+	cursor: pointer;
 }
 .button--buy {
 	background: var(--green-light);
