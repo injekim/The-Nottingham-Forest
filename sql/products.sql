@@ -1,3 +1,6 @@
+/* Mock data created using ChatGPT */
+/* Mock images created using DALL-E */
+
 INSERT INTO products (product_name, category_id, description, price, image_url)
 VALUES ('Basil', 2, 'A popular herb used in cooking and for medicinal purposes.', 2.99, './images/product_photos/basil.png');
 

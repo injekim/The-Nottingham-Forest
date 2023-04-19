@@ -65,27 +65,20 @@ CREATE TABLE order_items (
   FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-/* Setup Categories */
-INSERT INTO categories (category_name) VALUES ('Trees');    # id: 1
+/* Setup categories */
+INSERT INTO categories (category_name) VALUES ('Trees');   # id: 1
 INSERT INTO categories (category_name) VALUES ('Herbs');   # id: 2
-INSERT INTO categories (category_name) VALUES ('Flowers');   # id: 3
-INSERT INTO categories (category_name) VALUES ('Ivy');   # id: 4
-INSERT INTO categories (category_name) VALUES ('Shrubs');   # id: 5
-INSERT INTO categories (category_name) VALUES ('Cactus');   # id: 6
+INSERT INTO categories (category_name) VALUES ('Flowers'); # id: 3
+INSERT INTO categories (category_name) VALUES ('Ivy');     # id: 4
+INSERT INTO categories (category_name) VALUES ('Shrubs');  # id: 5
+INSERT INTO categories (category_name) VALUES ('Cactus');  # id: 6
 
-/* Setup Traits */
-INSERT INTO product_traits (trait_name) VALUES ('Mature Height'); # id: 1
-INSERT INTO product_traits (trait_name) VALUES ('Edible');    # id: 2
-INSERT INTO product_traits (trait_name) VALUES ('Growth Rate');  # id: 3
-INSERT INTO product_traits (trait_name) VALUES ('Fragrance');    # id: 4
-INSERT INTO product_traits (trait_name) VALUES ('Pruning Needs');    # id: 5
-INSERT INTO product_traits (trait_name) VALUES ('Sunlight Requirements');    # id: 6
+/* Setup traits */
+INSERT INTO product_traits (trait_name) VALUES ('Mature Height');         # id: 1
+INSERT INTO product_traits (trait_name) VALUES ('Edible');                # id: 2
+INSERT INTO product_traits (trait_name) VALUES ('Growth Rate');           # id: 3
+INSERT INTO product_traits (trait_name) VALUES ('Fragrance');             # id: 4
+INSERT INTO product_traits (trait_name) VALUES ('Pruning Needs');         # id: 5
+INSERT INTO product_traits (trait_name) VALUES ('Sunlight Requirements'); # id: 6
 INSERT INTO product_traits (trait_name) VALUES ('Disease Resistance');    # id: 7
-INSERT INTO product_traits (trait_name) VALUES ('Watering Needs');    # id: 8
-
-/*
-SELECT product_trait_values.value, COUNT(product_trait_values.value)
-FROM product_trait_values
-WHERE product_trait_values.trait_id = 1
-GROUP BY product_trait_values.value
-*/
+INSERT INTO product_traits (trait_name) VALUES ('Watering Needs');        # id: 8
