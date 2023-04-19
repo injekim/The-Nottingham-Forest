@@ -54,7 +54,8 @@
 				<div class="container container--sidebar">
 					<form action="./search.php" method="get">
 						<?php
-							$sidebar_query = '';
+							$sidebar_query_1 = '';
+							$sidebar_query_2 = '';
 							echo <<< EOT
 								<input
 									type="text"
@@ -78,7 +79,7 @@
 									$price_query = $price_query . 'AND products.price <= ' . $max . ' ';
 								}
 								if(strlen($min) + strlen($max) > 0) {
-									$sidebar_query = $sidebar_query . 'AND (' . substr($price_query, 3) . ')';
+									$sidebar_query_1 = $sidebar_query_1 . 'AND (' . substr($price_query, 3) . ')';
 								}
 								
 								echo <<< PRICE
@@ -114,7 +115,7 @@
 									CAT;
 								}
 								if(strlen($cat_query) > 0) {
-									$sidebar_query = $sidebar_query . 'AND (' . substr($cat_query, 2) . ')';
+									$sidebar_query_1 = $sidebar_query_1 . 'AND (' . substr($cat_query, 2) . ')';
 								}
 							?>
 						</div>
@@ -143,7 +144,7 @@
 									if(!is_null($trait_values)) {
 										if(in_array($value, $trait_values)) {
 											$checked = 'checked';
-											$trait_query = $trait_query . 'OR product_trait_values.value = "' . $value . '" ';
+											$trait_query = $trait_query . 'OR traits LIKE "%' . $trait_id . ':' . $value . '%" ';
 											echo $trait_query;
 										}
 									}
@@ -155,10 +156,10 @@
 											$value
 										</label>
 									VALUE;
-									if(strlen($trait_query) > 0) {
-										$sidebar_query = $sidebar_query . 'AND (' . substr($trait_query, 2) . ')';
-										// echo $sidebar_query;
-									}
+								}
+								if(strlen($trait_query) > 0) {
+									$sidebar_query_2 = $sidebar_query_2 . 'AND (' . substr($trait_query, 2) . ')';
+									echo $sidebar_query_2;
 								}
 								echo "</div>";
 							}
@@ -168,7 +169,7 @@
 				</div>
 				<div class="container container--results">
 					<?php
-						$search_query = "SELECT products.product_id, products.product_name, products.price, products.image_url
+						$search_query = "SELECT products.product_id, products.product_name, products.price, products.image_url, GROUP_CONCAT(product_traits.trait_id, ':', product_trait_values.value SEPARATOR ', ') AS traits
 						FROM products
 						JOIN product_trait_values ON products.product_id = product_trait_values.product_id
 						JOIN product_traits ON product_trait_values.trait_id = product_traits.trait_id
@@ -179,9 +180,12 @@
 							OR categories.category_name LIKE '%$search%'
 							OR product_trait_values.value LIKE '%$search%'
 						)";
-						$group_by = "GROUP BY products.product_id;";
-						// echo $search_query . $sidebar_query . $group_by;
-						$results = mysqli_query($con, $search_query . $sidebar_query . $group_by);
+						$group_by = "GROUP BY products.product_id";
+						
+						// echo $search_query . $sidebar_query_1 . $group_by . ' HAVING' . substr($sidebar_query_2, 3) . ';';
+						$having = '';
+						if(strlen($sidebar_query_2) > 0) $having = ' HAVING';
+						$results = mysqli_query($con, $search_query . $sidebar_query_1 . $group_by . $having . substr($sidebar_query_2, 3) . ';');
 					?>
 					<h2 class="title--content">Search Results</h2>
 					<div class="content-block gridview">
