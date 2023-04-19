@@ -103,7 +103,7 @@
 										if(in_array($category_id, $category)) {
 											$checked = 'checked';
 											$cat_query = $cat_query . 'OR categories.category_id = ' . $category_id . ' ';
-											echo $cat_query;
+											// echo $cat_query;
 										}
 									}
 									echo <<< CAT
@@ -145,7 +145,7 @@
 										if(in_array($value, $trait_values)) {
 											$checked = 'checked';
 											$trait_query = $trait_query . 'OR traits LIKE "%' . $trait_id . ':' . $value . '%" ';
-											echo $trait_query;
+											// echo $trait_query;
 										}
 									}
 
@@ -159,7 +159,7 @@
 								}
 								if(strlen($trait_query) > 0) {
 									$sidebar_query_2 = $sidebar_query_2 . 'AND (' . substr($trait_query, 2) . ')';
-									echo $sidebar_query_2;
+									// echo $sidebar_query_2;
 								}
 								echo "</div>";
 							}
