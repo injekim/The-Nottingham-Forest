@@ -51,9 +51,15 @@
 				</div>
 				<h2 class="title--content">Best Sellers</h2>
 				<div class="content-block gridview">
-					<?php 
-						$re1 = mysqli_query($con, "SELECT * FROM products LIMIT 0, 5;");
-						while($product = mysqli_fetch_array($re1)) {
+					<?php
+						$query = "SELECT products.product_id, products.product_name, products.price, products.image_url, SUM(order_items.quantity) as total_sales
+						FROM order_items
+						JOIN products ON order_items.product_id = products.product_id
+						GROUP BY products.product_id
+						ORDER BY total_sales DESC
+						LIMIT 5;";
+						$results = mysqli_query($con, $query);
+						while($product = mysqli_fetch_array($results)) {
 							$product_id = $product['product_id'];
 							$product_name = $product['product_name'];
 							$price = $product['price'];

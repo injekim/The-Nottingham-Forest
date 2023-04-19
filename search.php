@@ -32,6 +32,7 @@
 					<?php
 						$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 						$search = $_GET['search'];
+						$category = $_GET['search'];
 						echo <<< EOT
 							<input
 								type="text"
@@ -75,13 +76,14 @@
 						JOIN product_trait_values ON products.product_id = product_trait_values.product_id
 						JOIN product_traits ON product_trait_values.trait_id = product_traits.trait_id
 						JOIN categories ON products.category_id = categories.category_id
-						WHERE
-						products.product_name LIKE '%$search%'
-						OR products.description LIKE '%$search%'
-						OR categories.category_name LIKE '%$search%'
-						OR product_trait_values.value LIKE '%$search%'
-						GROUP BY products.product_id;";
-						$results = mysqli_query($con, $search_query);
+						WHERE (
+							products.product_name LIKE '%$search%'
+							OR products.description LIKE '%$search%'
+							OR categories.category_name LIKE '%$search%'
+							OR product_trait_values.value LIKE '%$search%'
+						)";
+						$group_by = "GROUP BY products.product_id;";
+						$results = mysqli_query($con, $search_query . $group_by);
 					?>
 					<h2 class="title--content">Search Results</h2>
 					<div class="content-block gridview">
@@ -105,41 +107,7 @@
 								EOT;
 							}
 						?>
-<!-- 						<div class="grid-child hover hover--opacity-08">
-							<div class="grid-child__img" style="background-image: url('./images/plant_test.png');"></div>
-							<div class="grid-child__info">
-								<h3 class="grid-child__title">AAAAAAggggg</h3>
-								<p class="grid-child__price">￡ 40</p>
-							</div>
-						</div>
-						<div class="grid-child hover hover--opacity-08">
-							<div class="grid-child__img"></div>
-							<div class="grid-child__info">
-								<h3 class="grid-child__title">Test</h3>
-								<p class="grid-child__price">￡ 40</p>
-							</div>
-						</div>
-						<div class="grid-child hover hover--opacity-08">
-							<div class="grid-child__img"></div>
-							<div class="grid-child__info">
-								<h3 class="grid-child__title">Test</h3>
-								<p class="grid-child__price">￡ 40</p>
-							</div>
-						</div>
-						<div class="grid-child hover hover--opacity-08">
-							<div class="grid-child__img"></div>
-							<div class="grid-child__info">
-								<h3 class="grid-child__title">Treeeee</h3>
-								<p class="grid-child__price">￡ 40</p>
-							</div>
-						</div>
-						<div class="grid-child hover hover--opacity-08">
-							<div class="grid-child__img"></div>
-							<div class="grid-child__info">
-								<h3 class="grid-child__title">How long can this goooooooooooo</h3>
-								<p class="grid-child__price">￡ 40</p>
-							</div>
-						</div> -->
+						<!-- Dummies to help with formatting -->
 						<div class="grid-child grid-child--dummy"></div>
 						<div class="grid-child grid-child--dummy"></div>
 						<div class="grid-child grid-child--dummy"></div>

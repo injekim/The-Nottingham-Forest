@@ -34,14 +34,14 @@
 			<div class="navigation">
 				<div class="container container--navigation">
 					<?php 
-						$re1 = mysqli_query($con, "
+						$nav_results = mysqli_query($con, "
 							SELECT products.product_id, categories.category_name, products.product_name
 							FROM products
 							JOIN categories ON products.category_id = categories.category_id
 							WHERE products.product_id = $pid;
 						");
 						
-						$product = mysqli_fetch_array($re1);
+						$product = mysqli_fetch_array($nav_results);
 						echo "<p class='nav-text'>Home > $product[1] > $product[2]</p>";
 					?>
 				</div>
@@ -59,8 +59,8 @@
 			<div class="container container--main">
 				<div class="container container--product">
 					<?php 
-						$re2 = mysqli_query($con, "SELECT * FROM products WHERE products.product_id = $pid;");
-						$product = mysqli_fetch_array($re2);
+						$results = mysqli_query($con, "SELECT * FROM products WHERE products.product_id = $pid;");
+						$product = mysqli_fetch_array($results);
 						$product_name = $product['product_name'];
 						$price = $product['price'];
 						$image_url = $product['image_url'];
@@ -117,6 +117,7 @@
 							<p class="grid-child__price">￡ 40</p>
 						</div>
 					</div>
+					<!-- Dummies to help with formatting -->
 					<div class="grid-child grid-child--dummy-fw"></div>
 					<div class="grid-child grid-child--dummy-fw"></div>
 					<div class="grid-child grid-child--dummy-fw"></div>
