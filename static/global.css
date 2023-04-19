@@ -83,6 +83,21 @@ a {
 	padding: 0 20px;
 }
 
+.admin-sign {
+	background: var(--green-dark);
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 600;
+	font-size: 17px;
+	color: white;
+	border-radius: 20px;
+	position: absolute;
+	line-height: 40px;
+	width: 80px;
+	right: 20px;
+	top: 20px;
+}
+
 .logo {
 	display: inline-block;
 	cursor: pointer;

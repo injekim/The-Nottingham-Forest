@@ -20,6 +20,12 @@
 	</head>
 	<body>
 		<div class="min-100vh">
+			<?php
+				$admin = $_GET['admin'];
+				if($admin == 'True') {
+					echo "<div class='admin-sign'>Admin</div>";
+				}
+			?>
 			<header class="header header--big">
 				<div class="container container--header">
 					<a href="./index.php" class="logo logo--big hover hover--opacity-08">
