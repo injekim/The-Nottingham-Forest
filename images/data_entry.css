@@ -23,6 +23,9 @@
 	padding: 10px;
 	width: calc(100% - 20px - 2px);
 }
+.input--entry::placeholder {
+	color: var(--grey-light);
+}
 .input--entry__title {
 	letter-spacing: -1px;
 	font-weight: 600;
