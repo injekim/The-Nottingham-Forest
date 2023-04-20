@@ -71,7 +71,7 @@
 						$image_url = $product['image_url'];
 						$description = $product['description'];
 						
-						echo <<< EOT
+						echo <<< INFO
 							<div class="product-photo" style="background-image: url('$image_url');"></div>
 							<div class="product-info">
 								<h1 class="product-info__title">$product_name</h1>
@@ -84,7 +84,7 @@
 									</form>
 								</div>
 							</div>
-						EOT;
+						INFO;
 					?>
 				</div>
 				<h2 class="title--content">Related Items</h2>

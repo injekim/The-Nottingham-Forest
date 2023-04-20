@@ -33,9 +33,17 @@
 	font-weight: 600;
 	font-size: 20px;
 }
+.input--entry__url {
+	font-size: 17px;
+}
 .input--entry__desc {
+	min-height: 80px;
 	resize: vertical;
 	word-wrap: break-word;
 	white-space: normal;
 	font-size: 17px;
+}
+
+.product-info__button-area--entry {
+	margin-top: 20px;
 }
