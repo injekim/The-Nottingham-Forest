@@ -32,7 +32,7 @@
 			?>
 			<header class="header header--big">
 				<div class="container container--header">
-					<a href="/" class="logo logo--big hover hover--opacity-08">
+					<a href="./index.php" class="logo logo--big hover hover--opacity-08">
 						<img src="images/logo.svg" class="logo__img logo--big__img" alt="Logo">
 					</a>
 				</div>
@@ -70,15 +70,39 @@
 				<div class="container container--product">
 					<div class="product-photo"></div>
 					<div class="product-info product-info--entry">
-						<form>
+						<form action="./update_db.php" method="get">
+							<?php
+								echo "<input type='text' name='pid' value='$pid' style='display: none;'>";
+							?>
+							<input type="text" name="mode" value="update" style="display: none;">
 							<h3 class="title--entry">Title</h3>
-							<input class="input--entry input--entry__title" type="text" placeholder="Mandrake">
+							<input name="product_name" class="input--entry input--entry__title" type="text" placeholder="Mandrake">
+							
 							<h3 class="title--entry">Price</h3>
-							<input class="input--entry input--entry__price" type="text" placeholder="00.0">
+							<input name="price" class="input--entry input--entry__price" type="text" placeholder="00.0">
+							
+							<h3 class="title--entry">Category</h3>
+							<select name="category_id" class="input--entry input--entry__select">
+								<?php
+									$results = mysqli_query($con, "SELECT * FROM categories;");
+									
+									while($category = mysqli_fetch_array($results)) {
+										$category_id = $category['category_id'];
+										$category_name = $category['category_name'];
+										
+										echo "<option value='$category_id'>$category_name</option>";
+									}
+								?>
+							</select>
+							
 							<h3 class="title--entry">Image url</h3>
-							<input class="input--entry input--entry__url" type="text" placeholder="./images/product_photo/mandrake.png">
+							<input name="image_url" class="input--entry input--entry__text" type="text" placeholder="./images/product_photo/mandrake.png">
+							
 							<h3 class="title--entry">Description</h3>
-							<textarea class="input--entry input--entry__desc" placeholder="A Mandrake, also known as Mandragora, is a plant which has a root that looks like a human. When mature, its cry can be fatal to any person who hears it."></textarea>
+							<textarea name="description" class="input--entry input--entry__desc" placeholder="A Mandrake, also known as Mandragora, is a plant which has a root that looks like a human. When mature, its cry can be fatal to any person who hears it."></textarea>
+							
+							<h3 class="title--entry">Traits</h3>
+							<textarea name="traits" class="input--entry input--entry__desc" placeholder="Growth Rate:Fast&#10;Watering Needs:Regular Water Needs"></textarea>
 							<div class="product-info__button-area product-info__button-area--entry">
 								<button class="button button--buy hover hover--opacity-08" type="submit">Update</button>
 								<button onclick="deleteConfirm()" class="button button--cart hover hover--opacity-08" type="button">Delete</button>
@@ -95,7 +119,7 @@
 								if($_GET['pid'] > 0) {
 									var con = confirm("Are you sure you want to delete this product?");
 									if (con == true) {
-										document.location = "data_entry.php?pid=".concat($_GET['pid']);
+										document.location = "update_db.php?mode=del&pid=".concat($_GET['pid']);
 									}
 								} else {
 									alert("Product does not exist!");
@@ -108,7 +132,7 @@
 		</div>
 		<footer class="footer">
 			<div class="container container--footer">
-				<a href="/" class="logo logo--footer hover hover--opacity-08">
+				<a href="./index.php" class="logo logo--footer hover hover--opacity-08">
 					<img src="images/logo_grey.svg" class="logo__img logo--footer__img" alt="Logo">
 				</a>
 			</div>

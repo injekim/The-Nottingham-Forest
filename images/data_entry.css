@@ -36,7 +36,12 @@
 	font-weight: 600;
 	font-size: 20px;
 }
-.input--entry__url {
+.input--entry__text {
+	font-size: 17px;
+}
+.input--entry__select {
+	width: calc(100%);
+	height: 30px;
 	font-size: 17px;
 }
 .input--entry__desc {
