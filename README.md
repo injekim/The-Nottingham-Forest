@@ -8,6 +8,9 @@ It’s called ‘The Nottingham Forest’ because what else would it be called?
 ### Colour palette
 ![schema](./README/palette.png)
 
+### Font
+To match the forest theme of the website, the Finlandica font was chosen for its natural tall, slender design.
+
 ### Design Principle
 
 ## Database
