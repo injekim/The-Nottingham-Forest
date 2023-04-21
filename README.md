@@ -18,7 +18,7 @@ The font **Finlandica** was chosen for its compatibility with the forestry theme
 ### Screenshots
 index.php                                                 | search.php                                                | product.php                                               
  :--------------------------------------------------------:| :--------------------------------------------------------:| :--------------------------------------------------------:
- <img src="./README/screenshot_index.jpeg" width="256"/>   | <img src="./README/screenshot_search.jpeg" width="256"/>  | <img src="./README/screenshot_product.jpeg" width="256"/>
+ <img src="./README/screenshot_index.png" width="256"/>   | <img src="./README/screenshot_search.png" width="256"/>  | <img src="./README/screenshot_product.png" width="256"/>
 
 ## Database
 ### Database schema
