@@ -12,4 +12,13 @@
 			</div>
 		PRODUCT;
 	}
+	
+	function AlertNRedirect($str) {
+		echo "<script type='text/javascript'>
+			window.onload = function () {
+				alert('$str');
+				window.history.go(-1);
+			}
+		</script>";
+	}
 ?>

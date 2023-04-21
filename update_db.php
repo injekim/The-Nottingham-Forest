@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <?php
-	function AlertNRedirect($str) {
-		echo "<script type='text/javascript'>
-			window.onload = function () {
-				alert('$str');
-				window.history.go(-1);
-			}
-		</script>";
-	}
+	require_once('functions.php');
 	
 	/* Get attributes */
 	$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
