@@ -19,7 +19,8 @@ The font *Finlandica* was chosen for its compatibility with the forestry theme o
 ![schema](./README/schema.png)
 The database for the Nottingham Forest was designed to efficiently store and organise data related to products, customers, and orders. The categories table is linked to the products table through a foreign key, allowing each product to be associated with a specific category. The product traits and product trait values tables were created to store additional product information that may vary among products, while the customers table stores information about each registered customer. Orders and order items tables are linked to customers and products tables, respectively, enabling orders to be placed and tracked for each customer. The design allows for efficient data retrieval and manipulation, making it suitable for the needs of an e-commerce website.
 
-### Search query
+### Key queries
+#### Search query
 The search bar and side bar traits are used to retrieve a list of products that match the keywords and selected traits.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url, GROUP_CONCAT(product_traits.trait_id, ':', product_trait_values.value SEPARATOR ', ') AS traits
@@ -43,7 +44,7 @@ HAVING
 	AND (traits LIKE "%trait2:value1%" OR traits LIKE "%trait2:value2%") ...
 ```
 
-### Related products query
+#### Related products query
 Retrieves a list of 5 products that have the most matching traits.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url
@@ -57,7 +58,7 @@ ORDER BY COUNT(*) DESC
 LIMIT 5;
 ```
 
-### Best sellers query
+#### Best sellers query
 Retrieves a list of 5 products with highest sale numbers.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url, SUM(order_items.quantity) as total_sales
@@ -68,7 +69,7 @@ ORDER BY total_sales DESC
 LIMIT 5;
 ```
 
-### New product query
+#### New product query
 Add new product to the database.
 ```sql
 INSERT INTO products (product_name, category_id, description, price, image_url)
@@ -83,7 +84,7 @@ VALUES
 ...
 ```
 
-### Product update query
+#### Product update query
 Update product details and trait values on existing products.
 ```sql
 UPDATE products
