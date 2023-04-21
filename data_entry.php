@@ -52,6 +52,7 @@
 							echo "<p class='nav-text'>Home > $product[1] > $product[2]</p>";
 						} else {
 							echo "<p class='nav-text'>🆕 New product</p>";
+							$pid = 0;
 						}
 					?>
 				</div>
@@ -68,7 +69,38 @@
 			</div>
 			<div class="container container--main">
 				<div class="container container--product">
-					<div class="product-photo"></div>
+					<?php
+						$product = '';
+						$product_name = '';
+						$price = '';
+						$image_url = '';
+						$description = '';
+						$category_id = '1';
+						$traits = '';
+						
+						$data_query = "SELECT products.*, categories.*, GROUP_CONCAT(product_traits.trait_name, ':', product_trait_values.value SEPARATOR '&#10;') AS traits
+						
+						FROM products
+						JOIN product_trait_values ON products.product_id = product_trait_values.product_id
+						JOIN product_traits ON product_trait_values.trait_id = product_traits.trait_id
+						JOIN categories ON products.category_id = categories.category_id
+						WHERE products.product_id = $pid;";
+					
+						if($pid > 0) {
+							$results = mysqli_query($con, $data_query);
+							$product = mysqli_fetch_array($results);
+							$product_name = $product['product_name'];
+							$price = $product['price'];
+							$image_url = $product['image_url'];
+							$description = $product['description'];
+							$category_id = $product['category_id'];
+							$traits = $product['traits'];
+							echo $traits.str_replace(",", "&#10;", $traits);
+						}
+						echo <<< PHOTO
+							<div class="product-photo" style="background-image: url('$image_url');"></div>
+						PHOTO;
+					?>
 					<div class="product-info product-info--entry">
 						<form action="./update_db.php" method="get">
 							<?php
@@ -76,10 +108,14 @@
 							?>
 							<input type="text" name="mode" value="update" style="display: none;">
 							<h3 class="title--entry">Title</h3>
-							<input name="product_name" class="input--entry input--entry__title" type="text" placeholder="Mandrake">
+							<?php
+								echo "<input name='product_name' class='input--entry input--entry__title' type='text' placeholder='Mandrake' value='$product_name'>";
+							?>
 							
 							<h3 class="title--entry">Price</h3>
-							<input name="price" class="input--entry input--entry__price" type="text" placeholder="00.0">
+							<?php
+								echo "<input name='price' class='input--entry input--entry__price' type='text' placeholder='00.0' value='$price'>";
+							?>
 							
 							<h3 class="title--entry">Category</h3>
 							<select name="category_id" class="input--entry input--entry__select">
@@ -87,22 +123,30 @@
 									$results = mysqli_query($con, "SELECT * FROM categories;");
 									
 									while($category = mysqli_fetch_array($results)) {
-										$category_id = $category['category_id'];
-										$category_name = $category['category_name'];
+										$cid = $category['category_id'];
+										$cname = $category['category_name'];
 										
-										echo "<option value='$category_id'>$category_name</option>";
+										if($category_id == $cid) echo "<option value='$cid' selected='selected'>$cname</option>";
+										else echo "<option value='$cid'>$cname</option>";
 									}
 								?>
 							</select>
 							
 							<h3 class="title--entry">Image url</h3>
-							<input name="image_url" class="input--entry input--entry__text" type="text" placeholder="./images/product_photo/mandrake.png">
+							<?php
+								echo "<input name='image_url' class='input--entry input--entry__text' type='text' placeholder='./images/product_photo/mandrake.png' value='$image_url'>";
+							?>
 							
 							<h3 class="title--entry">Description</h3>
-							<textarea name="description" class="input--entry input--entry__desc" placeholder="A Mandrake, also known as Mandragora, is a plant which has a root that looks like a human. When mature, its cry can be fatal to any person who hears it."></textarea>
+							<?php
+								echo "<textarea name='description' class='input--entry input--entry__desc' placeholder='A Mandrake, also known as Mandragora, is a plant which has a root that looks like a human. When mature, its cry can be fatal to any person who hears it.'>$description</textarea>";
+							?>
 							
 							<h3 class="title--entry">Traits</h3>
-							<textarea name="traits" class="input--entry input--entry__desc" placeholder="Growth Rate:Fast&#10;Watering Needs:Regular Water Needs"></textarea>
+							<?php
+							echo "<textarea name='traits' class='input--entry input--entry__desc' placeholder='Growth Rate:Fast&#10;Watering Needs:Regular Water Needs'>$traits</textarea>"
+							?>
+							
 							<div class="product-info__button-area product-info__button-area--entry">
 								<button class="button button--buy hover hover--opacity-08" type="submit">Update</button>
 								<button onclick="deleteConfirm()" class="button button--cart hover hover--opacity-08" type="button">Delete</button>

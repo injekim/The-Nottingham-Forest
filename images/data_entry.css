@@ -32,7 +32,7 @@
 	font-size: 35px;
 }
 .input--entry__price {
-	color: var(--grey-light);
+/* 	color: var(--grey-light); */
 	font-weight: 600;
 	font-size: 20px;
 }
@@ -48,7 +48,7 @@
 	min-height: 80px;
 	resize: vertical;
 	word-wrap: break-word;
-	white-space: normal;
+	white-space: pre-wrap;
 	font-size: 17px;
 }
 
