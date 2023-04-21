@@ -13,6 +13,7 @@ The bright and attention-grabbing **#AFFF50** was selected to represent growth a
 The font **Finlandica** was chosen for its compatibility with the forestry theme of the website. With its bold and rustic appearance, it evokes a sense of nature and earthiness that aligns perfectly with the website's purpose.
 
 ### Design Principle
+> To be updated...
 
 ### Screenshots
 index.php                                                 | search.php                                                | product.php                                               
