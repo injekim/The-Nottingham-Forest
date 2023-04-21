@@ -2,23 +2,25 @@
 > A mock e-commerce website for BUSI4493 22-23
 
 This is a mock website for a fictitious company that specialises in delivering trees and plants to its customers.
-It’s called ‘The Nottingham Forest’ because what else would it be called?
+We have named it ‘The Nottingham Forest’ because what else would it be called?
 
 ## Interface Design
 ### Colour palette
 ![schema](./README/palette.png)
+The bright and attention-grabbing *#AFFF50* was selected to represent growth and renewal, while the natural and earthy *#365216* complements the brighter green hue. The medium grey *#6D6D6D* provides contrast for text and design elements, and the light grey *#C4C4C4* creates a feeling of openness and space as a background or border element.
 
 ### Font
-To match the forest theme of the website, the Finlandica font was chosen for its natural tall, slender design.
+The font *Finlandica* was chosen for its compatibility with the forestry theme of the website. With its bold and rustic appearance, it evokes a sense of nature and earthiness that aligns perfectly with the website's purpose.
 
 ### Design Principle
 
 ## Database
 ### Database schema
 ![schema](./README/schema.png)
+The database for the Nottingham Forest was designed to efficiently store and organise data related to products, customers, and orders. The categories table is linked to the products table through a foreign key, allowing each product to be associated with a specific category. The product traits and product trait values tables were created to store additional product information that may vary among products, while the customers table stores information about each registered customer. Orders and order items tables are linked to customers and products tables, respectively, enabling orders to be placed and tracked for each customer. The design allows for efficient data retrieval and manipulation, making it suitable for the needs of an e-commerce website.
 
 ### Search query
-> The search bar and side bar traits are used to retrieve a list of products that match the keywords and selected traits.
+The search bar and side bar traits are used to retrieve a list of products that match the keywords and selected traits.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url, GROUP_CONCAT(product_traits.trait_id, ':', product_trait_values.value SEPARATOR ', ') AS traits
 FROM products
@@ -42,7 +44,7 @@ HAVING
 ```
 
 ### Related products query
-> Retrieves a list of 5 products that have the most matching traits.
+Retrieves a list of 5 products that have the most matching traits.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url
 FROM products
@@ -56,7 +58,7 @@ LIMIT 5;
 ```
 
 ### Best sellers query
-> Retrieves a list of 5 products with highest sale numbers.
+Retrieves a list of 5 products with highest sale numbers.
 ```sql
 SELECT products.product_id, products.product_name, products.price, products.image_url, SUM(order_items.quantity) as total_sales
 FROM order_items
@@ -67,7 +69,7 @@ LIMIT 5;
 ```
 
 ### New product query
-> Add new product to the database.
+Add new product to the database.
 ```sql
 INSERT INTO products (product_name, category_id, description, price, image_url)
 VALUES ('Basil', 2, 'A popular herb used in cooking and for medicinal purposes.', 2.99, './images/product_photos/basil.png');
@@ -82,7 +84,7 @@ VALUES
 ```
 
 ### Product update query
-> Update product details and trait values on existing products.
+Update product details and trait values on existing products.
 ```sql
 UPDATE products
 SET product_name = '$product_name', category_id = $category_id, description = '$description', price = $price, image_url = '$image_url'
