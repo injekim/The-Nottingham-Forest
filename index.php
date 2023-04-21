@@ -13,6 +13,9 @@
 		<link href="images/global.css" rel="stylesheet">
 		<link href="images/landing.css" rel="stylesheet">
 		
+		<!-- php -->
+		<?php require_once('functions.php'); ?>
+		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,24 +60,14 @@
 						ORDER BY total_sales DESC
 						LIMIT 5;";
 						$results = mysqli_query($con, $query);
-						
+												
 						while($product = mysqli_fetch_array($results)) {
 							$product_id = $product['product_id'];
 							$product_name = $product['product_name'];
 							$price = $product['price'];
 							$image_url = $product['image_url'];
 							
-							echo <<< PRODUCT
-								<div class="grid-child hover hover--opacity-08">
-									<a class="link" href="./product.php?pid=$product_id">
-										<div class="grid-child__img" style="background-image: url('$image_url');"></div>
-										<div class="grid-child__info">
-											<h3 class="grid-child__title">$product_name</h3>
-											<p class="grid-child__price">￡ $price</p>
-										</div>
-									</a>
-								</div>
-							PRODUCT;
+							EchoGridChild($product_id, $product_name, $price, $image_url);
 						}
 					?>
 					<!-- Dummies to help with formatting -->
