@@ -5,6 +5,9 @@ This is a mock website for a fictitious company that specialises in delivering t
 It’s called ‘The Nottingham Forest’ because what else would it be called?
 
 ## Interface Design
+### Colour palette
+
+### Design Principle
 
 ## Database
 ### Database schema
@@ -60,6 +63,7 @@ LIMIT 5;
 ```
 
 ### New product query
+> Add new product to the database.
 ```sql
 INSERT INTO products (product_name, category_id, description, price, image_url)
 VALUES ('Basil', 2, 'A popular herb used in cooking and for medicinal purposes.', 2.99, './images/product_photos/basil.png');
@@ -74,6 +78,7 @@ VALUES
 ```
 
 ### Product update query
+> Update product details and trait values on existing products.
 ```sql
 UPDATE products
 SET product_name = '$product_name', category_id = $category_id, description = '$description', price = $price, image_url = '$image_url'
