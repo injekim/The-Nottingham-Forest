@@ -6,6 +6,7 @@ It’s called ‘The Nottingham Forest’ because what else would it be called?
 
 ## Interface Design
 ### Colour palette
+![schema](./README/palette.png)
 
 ### Design Principle
 
