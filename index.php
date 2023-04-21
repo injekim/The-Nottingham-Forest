@@ -20,12 +20,6 @@
 	</head>
 	<body>
 		<div class="min-100vh">
-			<?php
-				$admin = $_GET['admin'];
-				if($admin == 'True') {
-					echo "<div class='admin-sign'>Admin</div>";
-				}
-			?>
 			<header class="header header--big">
 				<div class="container container--header">
 					<a href="./index.php" class="logo logo--big hover hover--opacity-08">
@@ -44,9 +38,6 @@
 				</form>
 			</div>
 			<div class="container container--main">
-				<?php 
-					$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
-				?>
 				<div class="content-block banner-area">
 					<a href="./search.php?category%5B%5D=1&category%5B%5D=5" class="banner banner--half banner--trees hover hover--opacity-08">
 						<h1 class="banner__title">TREES</h1>
@@ -58,6 +49,7 @@
 				<h2 class="title--content">Best Sellers</h2>
 				<div class="content-block gridview">
 					<?php
+						$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 						$query = "SELECT products.product_id, products.product_name, products.price, products.image_url, SUM(order_items.quantity) as total_sales
 						FROM order_items
 						JOIN products ON order_items.product_id = products.product_id

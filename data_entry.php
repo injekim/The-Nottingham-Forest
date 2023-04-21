@@ -22,11 +22,6 @@
 	<body>
 		<div class="min-100vh">
 			<?php
-				$admin = $_GET['admin'];
-				if($admin == 'True') {
-					echo "<div class='admin-sign'>Admin</div>";
-				}
-			
 				$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 				$pid = $_GET['pid'];
 			?>
@@ -79,7 +74,6 @@
 						$traits = '';
 						
 						$data_query = "SELECT products.*, categories.*, GROUP_CONCAT(product_traits.trait_name, ':', product_trait_values.value SEPARATOR '&#10;') AS traits
-						
 						FROM products
 						JOIN product_trait_values ON products.product_id = product_trait_values.product_id
 						JOIN product_traits ON product_trait_values.trait_id = product_traits.trait_id

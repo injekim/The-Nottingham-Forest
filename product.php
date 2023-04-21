@@ -21,11 +21,6 @@
 	<body>
 		<div class="min-100vh">
 			<?php
-				$admin = $_GET['admin'];
-				if($admin == 'True') {
-					echo "<div class='admin-sign'>Admin</div>";
-				}
-
 				$con = mysqli_connect("localhost", "root", "", "nottingham_forest");
 				$pid = $_GET['pid'];
 			?>
@@ -38,7 +33,7 @@
 			</header>
 			<div class="navigation">
 				<div class="container container--navigation">
-					<?php 
+					<?php
 						$nav_results = mysqli_query($con, "
 							SELECT products.product_id, categories.category_name, products.product_name
 							FROM products

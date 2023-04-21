@@ -20,12 +20,6 @@
 	</head>
 	<body>
 		<div class="min-100vh">
-			<?php
-				$admin = $_GET['admin'];
-				if($admin == 'True') {
-					echo "<div class='admin-sign'>Admin</div>";
-				}
-			?>
 			<header class="header header--big">
 				<div class="container container--header">
 					<a href="./index.php" class="logo logo--big hover hover--opacity-08">
@@ -56,14 +50,7 @@
 						<?php
 							$sidebar_query_1 = '';
 							$sidebar_query_2 = '';
-							echo <<< EOT
-								<input
-									type="text"
-									name="search"
-									style="display: none;"
-									value="$search"
-								>
-							EOT;
+							echo "<input type='text' name='search' style='display: none;' value='$search'>"
 						?>
 						<h3 class="title--sidebar">Price</h3>
 						<div class="sidebar-box sidebar-box--price">
@@ -72,15 +59,9 @@
 								$max = $_GET['max'];
 								$price_query = '';
 								
-								if(strlen($min) > 0) {
-									$price_query = $price_query . 'AND products.price >= ' . $min . ' ';
-								}
-								if(strlen($max) > 0) {
-									$price_query = $price_query . 'AND products.price <= ' . $max . ' ';
-								}
-								if(strlen($min) + strlen($max) > 0) {
-									$sidebar_query_1 = $sidebar_query_1 . 'AND (' . substr($price_query, 3) . ')';
-								}
+								if(strlen($min) > 0) $price_query = $price_query . 'AND products.price >= ' . $min . ' ';
+								if(strlen($max) > 0) $price_query = $price_query . 'AND products.price <= ' . $max . ' ';
+								if(strlen($min) + strlen($max) > 0) $sidebar_query_1 = $sidebar_query_1 . 'AND (' . substr($price_query, 3) . ')';
 								
 								echo <<< PRICE
 									<input class="price-box" type="text" name="min" placeholder="Min" value="$min">
@@ -103,7 +84,6 @@
 										if(in_array($category_id, $category)) {
 											$checked = 'checked';
 											$cat_query = $cat_query . 'OR categories.category_id = ' . $category_id . ' ';
-											// echo $cat_query;
 										}
 									}
 									echo <<< CAT
@@ -114,9 +94,7 @@
 										</label>
 									CAT;
 								}
-								if(strlen($cat_query) > 0) {
-									$sidebar_query_1 = $sidebar_query_1 . 'AND (' . substr($cat_query, 2) . ')';
-								}
+								if(strlen($cat_query) > 0) $sidebar_query_1 = $sidebar_query_1 . 'AND (' . substr($cat_query, 2) . ')';
 							?>
 						</div>
 						<?php
@@ -133,19 +111,21 @@
 									WHERE product_trait_values.trait_id = $trait_id
 									GROUP BY product_trait_values.value;";
 								$values = mysqli_query($con, $query);
+								
 								echo <<< TRAIT
 									<h3 class="title--sidebar">$trait_name</h3>
 									<div class="sidebar-box">
 								TRAIT;
+								
 								while($trait = mysqli_fetch_array($values)) {
 									$value = $trait['value'];
 									$name = $trait_id . '[]';
 									$checked = '';
+									
 									if(!is_null($trait_values)) {
 										if(in_array($value, $trait_values)) {
 											$checked = 'checked';
 											$trait_query = $trait_query . 'OR traits LIKE "%' . $trait_id . ':' . $value . '%" ';
-											// echo $trait_query;
 										}
 									}
 									
@@ -157,10 +137,8 @@
 										</label>
 									VALUE;
 								}
-								if(strlen($trait_query) > 0) {
-									$sidebar_query_2 = $sidebar_query_2 . 'AND (' . substr($trait_query, 2) . ')';
-									// echo $sidebar_query_2;
-								}
+								if(strlen($trait_query) > 0) $sidebar_query_2 = $sidebar_query_2 . 'AND (' . substr($trait_query, 2) . ')';
+								
 								echo "</div>";
 							}
 						?>
@@ -182,7 +160,6 @@
 						)";
 						$group_by = "GROUP BY products.product_id";
 						
-						// echo $search_query . $sidebar_query_1 . $group_by . ' HAVING' . substr($sidebar_query_2, 3) . ';';
 						$having = '';
 						if(strlen($sidebar_query_2) > 0) $having = ' HAVING';
 						$results = mysqli_query($con, $search_query . $sidebar_query_1 . $group_by . $having . substr($sidebar_query_2, 3) . ';');
