@@ -66,7 +66,7 @@
 			$traits_values = array();
 			for($i = 0; $i < $trait_count; $i++) {
 				$temp = explode(":", $traits[$i]);
-				array_push($traits_values, array($traits_dic[$temp[0]], $temp[1]));
+				array_push($traits_values, array($traits_dic[$temp[0]], str_replace('\n', '', $temp[1])));
 			}
 			
 			/* Insert new product */
@@ -105,7 +105,41 @@
 					</script>';
 				}
 			} else { /* Update product */
+				$query_0 = "UPDATE products
+				SET product_name = '$product_name', category_id = $category_id, description = '$description', price = $price, image_url = '$image_url'
+				WHERE product_id = $pid;";
+				$results_0 = mysqli_query($con, $query_0);
+				echo "$query_0";
 				
+				$query_1 = "DELETE FROM product_trait_values WHERE product_id = $pid;";
+				$results_1 = mysqli_query($con, $query_1);
+				
+				$query_2 = "INSERT INTO product_trait_values (product_id, trait_id, value)
+				VALUES
+				";
+				
+				for($i = 0; $i < $trait_count; $i++) {
+					$query_2 = $query_2 . "($pid, " . $traits_values[$i][0] . ", '" . $traits_values[$i][1] . "'), ";
+				}
+				$query_2 = substr($query_2, 0, -2) . ";";
+				// echo $query_0 . $query_1 . $query_2;
+				
+				$results_2 = mysqli_query($con, $query_2);
+				if($results_0 && $results_1 && $results_2) {
+					echo '<script type="text/javascript">
+						window.onload = function () {
+							alert("Sussesfully updated product."); 
+							window.location = "./search.php";
+						}
+					</script>';
+				} else {
+					echo '<script type="text/javascript">
+						window.onload = function () {
+							alert("Product update failed.");
+							window.location = "./search.php";
+						}
+					</script>';
+				}
 			}
 		}
 	?>

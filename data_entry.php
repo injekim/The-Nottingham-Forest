@@ -85,7 +85,7 @@
 						JOIN product_traits ON product_trait_values.trait_id = product_traits.trait_id
 						JOIN categories ON products.category_id = categories.category_id
 						WHERE products.product_id = $pid;";
-					
+						
 						if($pid > 0) {
 							$results = mysqli_query($con, $data_query);
 							$product = mysqli_fetch_array($results);
@@ -148,8 +148,14 @@
 							?>
 							
 							<div class="product-info__button-area product-info__button-area--entry">
-								<button class="button button--buy hover hover--opacity-08" type="submit">Update</button>
-								<button onclick="deleteConfirm()" class="button button--cart hover hover--opacity-08" type="button">Delete</button>
+								<?php
+									if($pid > 0) {
+										echo "<button class='button button--buy hover hover--opacity-08' type='submit'>Update</button>
+										<button onclick='deleteConfirm()' class='button button--cart hover hover--opacity-08' type='button'>Delete</button>";
+									} else {
+										echo "<button class='button button--buy hover hover--opacity-08' type='submit'>Add Product</button>";
+									}
+								?>
 							</div>
 						</form>
 						<script>

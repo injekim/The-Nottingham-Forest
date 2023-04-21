@@ -148,7 +148,7 @@
 											// echo $trait_query;
 										}
 									}
-
+									
 									echo <<< VALUE
 										<label class="sidebar__label">
 											<input class="checkbox" type="checkbox" name="$name" value="$value" $checked>
