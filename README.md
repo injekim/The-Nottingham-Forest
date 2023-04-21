@@ -7,10 +7,10 @@ We have named it ‘The Nottingham Forest’ because what else would it be calle
 ## Interface Design
 ### Colour palette
 ![schema](./README/palette.png)
-The bright and attention-grabbing *#AFFF50* was selected to represent growth and renewal, while the natural and earthy *#365216* complements the brighter green hue. The medium grey *#6D6D6D* provides contrast for text and design elements, and the light grey *#C4C4C4* creates a feeling of openness and space as a background or border element.
+The bright and attention-grabbing **#AFFF50** was selected to represent growth and renewal, while the natural and earthy **#365216** complements the brighter green hue. The medium grey **#6D6D6D** provides contrast for text and design elements, and the light grey **#C4C4C4** creates a feeling of openness and space as a background or border element.
 
 ### Font
-The font *Finlandica* was chosen for its compatibility with the forestry theme of the website. With its bold and rustic appearance, it evokes a sense of nature and earthiness that aligns perfectly with the website's purpose.
+The font **Finlandica** was chosen for its compatibility with the forestry theme of the website. With its bold and rustic appearance, it evokes a sense of nature and earthiness that aligns perfectly with the website's purpose.
 
 ### Design Principle
 
