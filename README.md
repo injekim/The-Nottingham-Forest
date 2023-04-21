@@ -58,3 +58,34 @@ GROUP BY products.product_id
 ORDER BY total_sales DESC
 LIMIT 5;
 ```
+
+### New product query
+```sql
+INSERT INTO products (product_name, category_id, description, price, image_url)
+VALUES ('Basil', 2, 'A popular herb used in cooking and for medicinal purposes.', 2.99, './images/product_photos/basil.png');
+
+SET @product_id = LAST_INSERT_ID();
+
+INSERT INTO product_trait_values (product_id, trait_id, value)
+VALUES
+(@product_id, 2, 'Edible'),
+(@product_id, 3, 'Fast'),
+...
+```
+
+### Product update query
+```sql
+UPDATE products
+SET product_name = '$product_name', category_id = $category_id, description = '$description', price = $price, image_url = '$image_url'
+WHERE product_id = $pid;
+
+# Delete all previous traits related to the product
+DELETE FROM product_trait_values WHERE product_id = $pid;
+
+# Insert new trait values
+INSERT INTO product_trait_values (product_id, trait_id, value)
+VALUES
+(@product_id, 2, 'Edible'),
+(@product_id, 3, 'Fast'),
+...
+```
