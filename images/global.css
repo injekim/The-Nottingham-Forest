@@ -43,6 +43,7 @@ a {
 	font-size: 0;
 }
 .container--header {
+	transition-duration: .2s;
 	padding-top: 90px;
 	height: 210px;
 }
@@ -104,6 +105,7 @@ a {
 	height: auto;
 }
 .logo--big__img {
+	transition-duration: .2s;
 	height: calc(135px * 1.04);
 	margin-bottom: calc(-135px * 0.04);
 }
@@ -217,4 +219,15 @@ a {
 	  max-width: 0;
 	  min-width: 0;
   }
+}
+
+@media only screen and (max-width: 600px) {
+	.logo--big__img {
+		height: calc(100px * 1.04);
+		margin-bottom: calc(-100px * 0.04);
+	}
+	.container--header {
+		padding-top: 90px;
+		height: 175px;
+	}
 }

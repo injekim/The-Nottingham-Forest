@@ -20,6 +20,9 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Finlandica:wght@400;500;600;700&display=swap" rel="stylesheet">
+		
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<div class="min-100vh">
@@ -45,10 +48,12 @@
 							>
 						EOT;
 					?>
+					<input class="filter-checkbox" id="filter-checkbox" type="checkbox" />
+					<label class="filter-label" for="filter-checkbox" on-click="test()">Filter</label>
 				</form>
 			</div>
 			<div class="container container--main">
-				<div class="container container--sidebar">
+				<div class="container container--sidebar" id="container--sidebar">
 					<form action="./search.php" method="get">
 						<?php
 							$sidebar_query_1 = '';
@@ -194,5 +199,26 @@
 				</a>
 			</div>
 		</footer>
+		<script>
+			const checkbox = document.getElementById('filter-checkbox');
+			const sidebar = document.getElementById('container--sidebar');
+			
+			checkbox.addEventListener('change', function() {
+				if (this.checked) {
+					sidebar.style.display = 'block';
+				} else {
+					sidebar.style.display = 'none';
+				}
+			});
+			
+			$(window).resize(function() {
+				if($(window).width() > 600) { 	
+					sidebar.style.display = 'inline-block';
+					checkbox.prop("checked", false);
+				} else {
+					sidebar.style.display = 'none';
+				}
+			});
+		</script>
 	</body>
 </html>

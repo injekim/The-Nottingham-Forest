@@ -44,3 +44,17 @@
 	top: 0;
 	
 }
+
+@media only screen and (max-width: 600px) {
+	.banner-area {
+		display: block;
+	}
+	.banner--half {
+		flex: none;
+		display: block;
+	}
+	.banner--half:first-child {
+		margin-bottom: 20px;
+		margin-right: 0;
+	}
+}
