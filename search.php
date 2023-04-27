@@ -205,7 +205,7 @@
 			
 			checkbox.addEventListener('change', function() {
 				if (this.checked) {
-					sidebar.style.display = 'block';
+					sidebar.style.display = 'inline-block';
 				} else {
 					sidebar.style.display = 'none';
 				}
@@ -215,6 +215,9 @@
 				if($(window).width() > 600) { 	
 					sidebar.style.display = 'inline-block';
 					checkbox.prop("checked", false);
+				}
+				if (checkbox.checked) {
+					sidebar.style.display = 'inline-block';
 				} else {
 					sidebar.style.display = 'none';
 				}
