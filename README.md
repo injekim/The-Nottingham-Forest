@@ -16,9 +16,14 @@ The bright and attention-grabbing **#AFFF50** was selected to represent growth a
 The font **Finlandica** was chosen for its compatibility with the forestry theme of the website. With its bold and rustic appearance, it evokes a sense of nature and earthiness that aligns perfectly with the website's purpose.
 
 ### Screenshots
-index.php                                                 | search.php                                                | product.php                                               
- :--------------------------------------------------------:| :--------------------------------------------------------:| :--------------------------------------------------------:
- <img src="./README/screenshot_index.png" width="256"/>   | <img src="./README/screenshot_search.png" width="256"/>  | <img src="./README/screenshot_product.png" width="256"/>
+<style>
+table th {
+	width: 25%;
+}
+</style>
+ index.php                                                | search.php                                               | product.php                                              | data_entry.php 
+:--------------------------------------------------------:|:--------------------------------------------------------:|:--------------------------------------------------------:|:--------------------------------------------------------:
+ <img src="./README/screenshot_index.png" width="100%"/>   | <img src="./README/screenshot_search.png" width="100%"/>  | <img src="./README/screenshot_product.png" width="100%"/> | <img src="./README/screenshot_data_entry.png" width="100%"/>
 
 ## Database
 ### Database schema
