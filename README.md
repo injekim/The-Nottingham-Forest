@@ -4,16 +4,16 @@
 This is a mock website for a fictitious company that specialises in delivering trees and plants to its customers.
 We have named it ‘The Nottingham Forest’ because what else would it be called?
 
+## Use-case Analysis
+![Rich Picture](./README/rich_picture.png)
+
 ## Interface Design
 ### Colour palette
-![schema](./README/palette.png)
+![Colour Palette](./README/palette.png)
 The bright and attention-grabbing **#AFFF50** was selected to represent growth and renewal, while the natural and earthy **#365216** complements the brighter green hue. The medium grey **#6D6D6D** provides contrast for text and design elements, and the light grey **#C4C4C4** creates a feeling of openness and space as a background or border element.
 
 ### Font
 The font **Finlandica** was chosen for its compatibility with the forestry theme of the website. With its bold and rustic appearance, it evokes a sense of nature and earthiness that aligns perfectly with the website's purpose.
-
-### Design Principle
-> To be updated...
 
 ### Screenshots
 index.php                                                 | search.php                                                | product.php                                               
@@ -22,8 +22,8 @@ index.php                                                 | search.php          
 
 ## Database
 ### Database schema
-![schema](./README/schema.png)
-The database for the Nottingham Forest was designed to efficiently store and organise data related to products, customers, and orders. The categories table is linked to the products table through a foreign key, allowing each product to be associated with a specific category. The product traits and product trait values tables were created to store additional product information that may vary among products, while the customers table stores information about each registered customer. Orders and order items tables are linked to customers and products tables, respectively, enabling orders to be placed and tracked for each customer. The design allows for efficient data retrieval and manipulation, making it suitable for the needs of an e-commerce website.
+![Database Schema](./README/schema.png)
+The Nottingham Forest database was created to efficiently store and manage data on products, customers, and orders. The categories table is connected to the products table by a foreign key, allowing each product to be assigned to a certain category. The product traits and product trait values databases were designed to hold extra product information that may differ between products, whilst the customers table contains information about each registered customer. Orders and order item tables are connected to the customers and products tables, allowing orders to be placed and tracked for each client. The design provides for quick data access and processing, making it ideal for an e-commerce website.
 
 ### Key queries
 #### Search query
